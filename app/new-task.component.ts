@@ -7,8 +7,8 @@ import {Task} from './task.model';
   template: `
   <div class="task-form">
     <h3>Create Task:</h3>
-    <input placeholder="Description" class="col-sm-8 input-lg add-button" #newDescription>
-    <button class="btn-success btn-lg" (click)="addTask(newDescription)">Add</button>
+    <input placeholder="Description" class="col-sm-8 input-lg" #newDescription>
+    <button class="btn-success btn-lg add-button" (click)="addTask(newDescription)">Add</button>
   </div>
   `
 })
