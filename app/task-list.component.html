@@ -1,9 +1,9 @@
 <select (change)="onChange($event.target.value)" class="filter">
   <option value="all">Show All</option>
-  <option value="done">Show Done</option>
+  <option value="isDone">Show Done</option>
   <option value="notDone" selected="selected">Show Not Done</option>
 </select>
-<task-display *ngFor="#currentTask of taskList | done:filterDone"
+<task-display *ngFor="#currentTask of taskList | completeness:selectedCompleteness"
   (click)="taskClicked(currentTask)"
   [class.selected]="currentTask === selectedTask"
   [task]="currentTask">
