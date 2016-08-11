@@ -12,7 +12,22 @@ import { CompletenessPipe } from './completeness.pipe';
   outputs: ['onTaskSelect'],
   pipes: [DonePipe, CompletenessPipe],
   directives: [TaskComponent, EditTaskDetailsComponent, NewTaskComponent],
-  templateUrl: 'app/task-list.component.html'
+  template: '
+    <select (change)="onChange($event.target.value)" class="filter">
+      <option value="all">Show All</option>
+      <option value="isDone">Show Done</option>
+      <option value="notDone" selected="selected">Show Not Done</option>
+    </select>
+    <task-display *ngFor="#currentTask of taskList | completeness:selectedCompleteness"
+      (click)="taskClicked(currentTask)"
+      [class.selected]="currentTask === selectedTask"
+      [task]="currentTask">
+    </task-display>
+    <edit-task-details *ngIf="selectedTask" [task]="selectedTask">
+    </edit-task-details>
+    <new-task (onSubmitNewTask)="createTask($event)"></new-task>
+
+  '
 })
 export class TaskListComponent {
   public taskList: Task[];
